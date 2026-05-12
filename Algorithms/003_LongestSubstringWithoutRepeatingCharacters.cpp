@@ -6,27 +6,36 @@ public:
     bool isCharInString(char& character, std::string& str){
         for (int i = 0; i < str.length(); i++){
             if (character == str[i]){
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     int lengthOfLongestSubstring(std::string s) {
+        if (s.length() < 2){
+            return s.length();
+        }
         int maxSubstringLength = 0;
-        for (int i = 0; i < s.length()-1; i++){
-            int substringLength = 0;
-            std::string substring = std::to_string(s[i]);
-            for (int j = i; j < s.length(); j++){
-                if(isCharInString(s[j], substring)){
+
+        for (int i = 0; i < s.length(); i++){
+            int substringLength = 1;
+
+            std::string substring(1, s[i]);
+
+            for (int j = i + 1; j < s.length(); j++){
+                if(!isCharInString(s[j], substring)){
                     substring += s[j];
                     substringLength++;
-                }else{
+                } else {
                     break;
                 }
             }
-            if (substringLength > maxSubstringLength) maxSubstringLength = substringLength;
+
+            if (substringLength > maxSubstringLength)
+                maxSubstringLength = substringLength;
         }
+
         return maxSubstringLength;
     }
 };
@@ -47,5 +56,10 @@ int main() {
         std::cout << "Input: " << input << " Output: " << std::to_string(Solution().lengthOfLongestSubstring(input)) << "\n";
         // output: 3
     }
+    {
+        std::string input = "hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        std::cout << "Input: " << input << " Output: " << std::to_string(Solution().lengthOfLongestSubstring(input)) << "\n";
+    }
+    std::cout << std::to_string(4);
     return 0;
 }

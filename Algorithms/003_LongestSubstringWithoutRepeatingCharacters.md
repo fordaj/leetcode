@@ -1,5 +1,9 @@
 # Longest Substring Without Repeating Characters
 
+```bash
+clang++ -std=c++17 Algorithms/003_LongestSubstringWithoutRepeatingCharacters.cpp -o app && ./app
+```
+
 Given a string s, find the length of the longest substring without duplicate characters.
 
 ## Example 1:
